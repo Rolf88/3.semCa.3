@@ -49,7 +49,7 @@
             </web-module-libraries>
             <web-module-additional-libraries>
                 <library dirs="200">
-                    <file>${file.reference.AngSeedClient-app}</file>
+                    <file>${file.reference.ca3.client-app}</file>
                     <path-in-war>/</path-in-war>
                 </library>
             </web-module-additional-libraries>
