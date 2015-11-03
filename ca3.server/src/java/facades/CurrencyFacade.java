@@ -1,12 +1,16 @@
 package facades;
 
 import entity.CurrencyRate;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 public class CurrencyFacade {
+
+    private static final HashMap<String, List<CurrencyRate>> rateCache = new HashMap<>();
 
     private final EntityManager entityManager;
 
@@ -22,5 +26,21 @@ public class CurrencyFacade {
         }
 
         this.entityManager.getTransaction().commit();
+    }
+
+    public List<CurrencyRate> find(Date date) {
+        String cacheKey = date.getDate() + "-" + date.getMonth() + "-" + date.getYear();
+
+        if (!rateCache.containsKey(cacheKey)) {
+            Query query = entityManager.createQuery("SELECT c FROM CurrencyRate c WHERE c.timeCreated = :timeCreated");
+            query.setParameter("timeCreated", date, TemporalType.DATE);
+
+            List<CurrencyRate> result = query.getResultList();
+            rateCache.put(cacheKey, result);
+
+            return result;
+        }
+
+        return rateCache.get(cacheKey);
     }
 }
