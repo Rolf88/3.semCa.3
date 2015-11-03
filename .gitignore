@@ -1,4 +1,4 @@
-AngSeedServer/build
-AngSeedClient/node_modules
-/AngSeedServer/dist/
+build
+node_modules
+dist/
 *~
