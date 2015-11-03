@@ -2,3 +2,5 @@ build
 node_modules
 dist/
 *~
+/ca3.server/nbproject/private/
+/ca3.client/nbproject/private/
