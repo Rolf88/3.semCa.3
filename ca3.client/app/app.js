@@ -6,17 +6,19 @@ angular.module('myApp', [
   'ngAnimate',
   'ui.bootstrap',
   'myApp.security',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.view3',
-  'myApp.view4',
+  'myApp.home',
+  'myApp.documentation',
+  'myApp.companyInfo',
+  'myApp.exchangeRateInfo',
+  'myApp.allUsers',
+  'myApp.loginSection',
   'myApp.filters',
   'myApp.directives',
   'myApp.factories',
   'myApp.services'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/home'});
 }]).
 config(function ($httpProvider) {
    $httpProvider.interceptors.push('authInterceptor');

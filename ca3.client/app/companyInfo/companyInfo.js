@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.view3', ['ngRoute'])
+angular.module('myApp.companyInfo', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view3', {
-    templateUrl: 'view3/view3.html',
-    controller: 'View3Ctrl'
+  $routeProvider.when('/companyInfo', {
+    templateUrl: 'companyInfo/companyInfoView.html',
+    controller: 'companyInfoCtrl'
   });
 }])
 
-.controller('View3Ctrl', function($http,$scope) {
+.controller('companyInfoCtrl', function($http,$scope) {
   $http.get('api/demoadmin')
             .success(function (data, status, headers, config) {
               $scope.data = data;

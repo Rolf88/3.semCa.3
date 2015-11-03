@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+angular.module('myApp.documentation', ['ngRoute'])
 
         .config(['$routeProvider', function ($routeProvider) {
-            $routeProvider.when('/view2', {
-              templateUrl: 'view2/view2.html',
-              controller: 'View2Ctrl'
+            $routeProvider.when('/documentation', {
+              templateUrl: 'documentation/documentationView.html',
+              controller: 'documentationCtrl'
             });
           }])
 
-        .controller('View2Ctrl', function ($http, $scope) {
+        .controller('documentationCtrl', function ($http, $scope) {
           $http({
             method: 'GET',
             url: 'api/demouser'
