@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/ca3.server"/>
+<Context antiJARLocking="true" path="/ca3.server">
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="3.semCa.3" password="rollerolf88" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/3.semca.3?zeroDateTimeBehavior=convertToNull" username="cph-rh110"/>
+</Context>

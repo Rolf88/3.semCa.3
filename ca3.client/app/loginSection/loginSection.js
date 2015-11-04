@@ -2,13 +2,9 @@
 
 angular.module('myApp.loginSection', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/loginSection', {
-    templateUrl: 'loginSection/loginSectionView.html',
-    controller: 'loginSectionCtrl'
+        .config(['$routeProvider', function ($routeProvider) {
+                $routeProvider.when('/loginSection', {
+                    templateUrl: 'loginSection/loginSectionView.html'
 
-        });
-}])
-
-.controller('loginSectionCtrl', function() {
-});
+                });
+            }]);
