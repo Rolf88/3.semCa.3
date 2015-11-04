@@ -17,6 +17,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import rest.models.CurrencyRateViewModel;
@@ -44,7 +45,20 @@ public class CurrencyResource {
 
         DailyCurrencyRateViewModel viewModel = new DailyCurrencyRateViewModel(searchDate, MapToCurrencyRateViewModel(currencyFacade.find(searchDate)));
         return Response.ok(gson.toJson(viewModel)).build();
-    } 
+    }
+
+    @GET
+    @Path("calculator/{amount}/{fromCurrency}/{toCurrency}")
+    @Produces("application/json")
+    public Response getCalculator(@PathParam("amount") float amount, @PathParam("fromCurrency") String fromCurrencyCode, @PathParam("toCurrency") String toCurrencyCode) {
+        CurrencyFacade currencyFacade = new CurrencyFacade(EntityFactory.getInstance().createEntityManager());
+
+        Date searchDate = new Date();
+
+        float result = currencyFacade.calculate(searchDate, amount, fromCurrencyCode, toCurrencyCode);
+
+        return Response.ok(gson.toJson(result)).build();
+    }
 
     private List<CurrencyRateViewModel> MapToCurrencyRateViewModel(List<CurrencyRate> currencyRates) {
         List<CurrencyRateViewModel> rates = new ArrayList<>();

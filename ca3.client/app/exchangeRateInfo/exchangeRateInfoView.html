@@ -1,10 +1,25 @@
 
+<div ng-controller="CurrencyConverterController as ctrl">
+    <div class="well">
+        <form ng-submit="ctrl.convert()" class="form-inline">
+            <input required type="number" class="form-control" ng-model="ctrl.amount" />
+            <select required class="form-control" ng-options="currency as currency.currencyCode for currency in ctrl.rate.rates" ng-model="ctrl.currencyFrom"> </select> 
+            <select required class="form-control" ng-options="currency as currency.currencyCode for currency in ctrl.rate.rates" ng-model="ctrl.currencyTo"></select> 
+            <button type="submit" class="btn btn-primary">Convert</button>
+
+            <div class="pull-right currency-result" ng-if="ctrl.result !== undefined">
+                {{ctrl.result}}
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <h1>Daily rates</h1>
 
 <div ng-controller="DailyRatesController as ctrl">
     {{ctrl.test}}
-    
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -19,4 +34,4 @@
     </table>
 </div>
 
-{{ctrl.rate | json}}
+{{ctrl.rate| json}}

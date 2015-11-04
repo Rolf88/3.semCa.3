@@ -1,4 +1,4 @@
- ol.list {
+ol.list {
     list-style-type: none;
     margin: 0;
     margin-left: 3em;
@@ -18,13 +18,20 @@ ol.list > li:before {
     top: 0;
     left: -1em;
     width: 0.8em;
-     
+
     font-size: 1.5em;
     line-height: 1;
     font-weight: bold;
     text-align: right;
     color: #464646;
- 
+
     content: counter(li-counter);
     counter-increment: li-counter;
+}
+
+.currency-result{
+    font-size: 37px;
+    line-height: 1;
+    font-weight: bold;
+    color: green;
 }
