@@ -1,4 +1,5 @@
 INSERT INTO `User` (password, username) VALUES ('test','test');
+-- sdlkjfsdlkjsfdljksdf
 
 SET @UserId = LAST_INSERT_ID();
 
