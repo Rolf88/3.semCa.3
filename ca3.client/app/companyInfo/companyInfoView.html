@@ -1,5 +1,48 @@
-<h3>CompanyInfo</h3>
-<div>
-  <p>Data from server (Admins only) <b style="color: darkblue">{{data.message}}</b></p>
-  <p>Server Time: <b style="color: darkblue">{{data.serverTime}}</b></p>
+<div class="well" style="width: 300px; margin-right: auto; margin-left: auto;">
+    <form ng-submit="getCompany()">
+        <div class="form-group">
+            <label class="label label-info">Search</label>
+            <input ng-model="searchText" name="search" type="text" class="form-control" />
+        </div>
+        <input type="submit" class="btn btn-info" value="Search" />
+    </form>
+    <br>
+    <div class="alert-danger">
+        <span class="alert-danger">{{errorMessage}}</span>
+    </div>
+</div>
+<div ng-show="companyFound">
+    <h2>{{company.name}}</h2>
+    <dl class="dl-horizontal">
+        <dt>CVR-number</dt>
+        <dd>{{company.vat}}</dd>
+        <dt>Address</dt>
+        <dd>{{company.address}}</dd>
+        <dt>Zip+city</dt>
+        <dd>{{company.zip}} {{company.city}}</dd>
+        <dt>Start date</dt>
+        <dd>{{company.startdate}}</dd>
+        <dt>Employees</dt>
+        <dd>{{company.employees}}</dd>
+        <dt>Email</dt>
+        <dd>{{company.email}}</dd>
+        <dt>Phone</dt>
+        <dd>{{company.phone}}</dd>
+    </dl>
+    <uib-accordion close-others="true">
+        <uib-accordion-group heading="{{pu.name}}" ng-repeat="pu in company.productionunits">
+            <dl class="dl-horizontal">
+                <dt>Address</dt>
+                <dd>{{pu.address}}</dd>
+                <dt>Zip+city</dt>
+                <dd>{{pu.zip}} {{pu.city}}</dd>
+                <dt>Start date</dt>
+                <dd>{{company.startdate}}</dd>
+                <dt>Email</dt>
+                <dd>{{pu.email}}</dd>
+                <dt>Phone</dt>
+                <dd>{{company.phone}}</dd>
+            </dl>
+        </uib-accordion-group>
+    </uib-accordion>
 </div>
