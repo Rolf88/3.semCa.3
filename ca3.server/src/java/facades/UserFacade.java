@@ -28,7 +28,11 @@ public class UserFacade {
         Query createQuery = this.entityManager.createQuery("SELECT u FROM User u WHERE u.userName = :userName");
         createQuery.setParameter("userName", userName);
 
-        return (User) createQuery.getSingleResult();
+        try {
+            return (User) createQuery.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public List<String> authenticateUser(String userName, String password) {
@@ -44,10 +48,10 @@ public class UserFacade {
         user.addRole("User");
 
         User oldUser = getUserByUserName(user.getUserName());
-        if(oldUser != null){
+        if (oldUser != null) {
             throw new NullPointerException("Username already in use");
         }
-        
+
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(user);
         this.entityManager.getTransaction().commit();
