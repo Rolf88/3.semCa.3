@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
+import rest.exceptions.DataAllreadyExistException;
 
 public class UserFacade {
 
@@ -40,7 +41,7 @@ public class UserFacade {
         return user != null && user.getPassword().equals(password) ? user.getRoles() : null;
     }
 
-    public User createUser(User user) {
+    public User createUser(User user) throws DataAllreadyExistException {
         if (user == null) {
             throw new NullPointerException("User cannot be null");
         }
@@ -49,7 +50,7 @@ public class UserFacade {
 
         User oldUser = getUserByUserName(user.getUserName());
         if (oldUser != null) {
-            throw new NullPointerException("Username already in use");
+            throw new DataAllreadyExistException("Username already in use");
         }
 
         this.entityManager.getTransaction().begin();

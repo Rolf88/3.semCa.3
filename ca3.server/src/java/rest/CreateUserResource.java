@@ -19,6 +19,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import rest.exceptions.InvalidDataException;
 import rest.jsonconverter.JSONConverter;
 
 /**
@@ -43,12 +44,12 @@ public class CreateUserResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createUser(String json) throws IOException {
+    public Response createUser(String json) throws InvalidDataException {
         UserFacade facade = new UserFacade(EntityFactory.getInstance());
         User user = gson.fromJson(json, User.class);
 
         if (user.getUserName().isEmpty() || user.getPassword().isEmpty()) {
-            throw new NullPointerException("UserName and Password are needed");
+            throw new InvalidDataException("UserName and Password are needed");
         }
 
         user = facade.createUser(user);
