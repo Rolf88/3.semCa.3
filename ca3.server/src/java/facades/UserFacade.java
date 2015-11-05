@@ -1,11 +1,14 @@
 package facades;
 
 import entity.User;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import rest.exceptions.DataAllreadyExistException;
+import security.PasswordHash;
 
 public class UserFacade {
 
@@ -36,18 +39,18 @@ public class UserFacade {
         }
     }
 
-    public List<String> authenticateUser(String userName, String password) {
+    public List<String> authenticateUser(String userName, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         User user = getUserByUserName(userName);
-        return user != null && user.getPassword().equals(password) ? user.getRoles() : null;
+        return user != null && PasswordHash.validatePassword(password, user.getPassword()) ? user.getRoles() : null;
     }
 
-    public User createUser(User user) throws DataAllreadyExistException {
+    public User createUser(User user) throws DataAllreadyExistException, NoSuchAlgorithmException, InvalidKeySpecException {
         if (user == null) {
             throw new NullPointerException("User cannot be null");
         }
 
         user.addRole("User");
-
+        user.setPassword(PasswordHash.createHash(user.getPassword()));
         User oldUser = getUserByUserName(user.getUserName());
         if (oldUser != null) {
             throw new DataAllreadyExistException("Username already in use");
@@ -58,6 +61,16 @@ public class UserFacade {
         this.entityManager.getTransaction().commit();
 
         return user;
+    }
+
+    public void deleteUser(User user) {
+        if (user == null) {
+            throw new NullPointerException("user cannot be null");
+        }
+
+        this.entityManager.getTransaction().begin();
+        this.entityManager.remove(user);
+        this.entityManager.getTransaction().commit();
     }
 
     public void close() {

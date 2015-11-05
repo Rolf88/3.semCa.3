@@ -6,9 +6,11 @@
 package rest.jsonconverter;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import entity.User;
+import java.util.List;
 
 /**
  *
@@ -32,5 +34,14 @@ public class JSONConverter {
 
     public static String userToJson(User user) {
         return new Gson().toJson(userToJsonObject(user));
+    }
+
+    public static String userToJson(List<User> users) {
+        JsonArray usersArr = new JsonArray();
+        for (User user : users) {
+            usersArr.add(userToJsonObject(user));
+        }
+
+        return new Gson().toJson(usersArr);
     }
 }

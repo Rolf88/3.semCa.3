@@ -11,6 +11,8 @@ import entity.User;
 import facades.EntityFactory;
 import facades.UserFacade;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -45,7 +47,7 @@ public class CreateUserResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createUser(String json) throws InvalidDataException, DataAllreadyExistException {
+    public Response createUser(String json) throws InvalidDataException, DataAllreadyExistException, NoSuchAlgorithmException, InvalidKeySpecException {
         UserFacade facade = new UserFacade(EntityFactory.getInstance());
         User user = gson.fromJson(json, User.class);
 
