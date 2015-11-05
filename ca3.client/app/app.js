@@ -12,6 +12,7 @@ angular.module('myApp', [
   'myApp.exchangeRateInfo',
   'myApp.allUsers',
   'myApp.loginSection',
+  'myApp.createUser',
   'myApp.filters',
   'myApp.directives',
   'myApp.factories',

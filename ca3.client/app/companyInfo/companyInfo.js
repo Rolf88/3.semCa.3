@@ -28,7 +28,7 @@ angular.module('myApp.companyInfo', ['ngRoute', 'ui.bootstrap'])
                         if ($scope.searchText.length <= 0) {
                             $scope.errorMessage = "Please provide a search input";
                         } else {
-                            $scope.errorMessage = "An error has orcured - See console";
+                            $scope.errorMessage = "An error has orcured - login as user";
                             console.log(error);
                         }
                     });

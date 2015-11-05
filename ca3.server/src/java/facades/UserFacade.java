@@ -1,7 +1,6 @@
 package facades;
 
 import entity.User;
-import entity.User;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -37,4 +36,19 @@ public class UserFacade {
         return user != null && user.getPassword().equals(password) ? user.getRoles() : null;
     }
 
+    public User createUser(User user) {
+        if (user == null) {
+            throw new NullPointerException("User cannot be null");
+        }
+
+        this.entityManager.getTransaction().begin();
+        this.entityManager.persist(user);
+        this.entityManager.getTransaction().commit();
+
+        return user;
+    }
+
+    public void close() {
+        this.entityManager.close();
+    }
 }

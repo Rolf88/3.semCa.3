@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
@@ -27,13 +28,14 @@ import javax.ws.rs.core.Response;
  * @author AlexanderSteen
  */
 @Path("company")
+@RolesAllowed("User")
 public class CompanyResource {
 
     @Context
     private UriInfo context;
     private Gson gson;
     private JsonParser jsonParser;
-    
+
     public CompanyResource() {
         gson = new Gson();
         jsonParser = new JsonParser();
@@ -51,11 +53,11 @@ public class CompanyResource {
 
             // open the stream and put it into BufferedReader
             BufferedReader br = new BufferedReader(
-                               new InputStreamReader(conn.getInputStream()));
+                    new InputStreamReader(conn.getInputStream()));
 
             String inputLine;
             while ((inputLine = br.readLine()) != null) {
-                    json+= inputLine;
+                json += inputLine;
             }
             br.close();
 
@@ -64,7 +66,7 @@ public class CompanyResource {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         return Response.ok(json).build();
     }
 }

@@ -13,6 +13,7 @@ import facades.EntityFactory;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.GET;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -24,6 +25,7 @@ import rest.models.CurrencyRateViewModel;
 import rest.models.DailyCurrencyRateViewModel;
 
 @Path("currency")
+@RolesAllowed("User")
 public class CurrencyResource {
 
     @Context
