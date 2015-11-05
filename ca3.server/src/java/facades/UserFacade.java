@@ -41,6 +41,13 @@ public class UserFacade {
             throw new NullPointerException("User cannot be null");
         }
 
+        user.addRole("User");
+
+        User oldUser = getUserByUserName(user.getUserName());
+        if(oldUser != null){
+            throw new NullPointerException("Username already in use");
+        }
+        
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(user);
         this.entityManager.getTransaction().commit();

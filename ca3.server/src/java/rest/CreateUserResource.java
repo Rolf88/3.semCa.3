@@ -47,9 +47,9 @@ public class CreateUserResource {
         UserFacade facade = new UserFacade(EntityFactory.getInstance());
         User user = gson.fromJson(json, User.class);
 
-//        if (user.getUserName().isEmpty() || user.getPassword().isEmpty() || user.getRoles().isEmpty()) {
-//            throw new NullPointerException("UserName and Password are needed");
-//        }
+        if (user.getUserName().isEmpty() || user.getPassword().isEmpty()) {
+            throw new NullPointerException("UserName and Password are needed");
+        }
 
         user = facade.createUser(user);
 

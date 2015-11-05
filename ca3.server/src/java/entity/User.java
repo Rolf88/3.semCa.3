@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -29,7 +30,7 @@ public class User implements Serializable {
     private String userName;
 
     @ElementCollection
-    private List<String> roles;
+    private List<String> roles = new ArrayList();
 
     public User() {
     }
@@ -69,6 +70,10 @@ public class User implements Serializable {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+    
+    public void addRole(String role){
+        this.roles.add(role);
     }
 
     public Long getId() {
