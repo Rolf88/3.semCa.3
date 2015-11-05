@@ -11,7 +11,6 @@ angular.module('myApp', [
   'myApp.companyInfo',
   'myApp.exchangeRateInfo',
   'myApp.allUsers',
-  'myApp.loginSection',
   'myApp.createUser',
   'myApp.filters',
   'myApp.directives',

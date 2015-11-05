@@ -35,3 +35,9 @@ ol.list > li:before {
     font-weight: bold;
     color: green;
 }
+
+.well.center{
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 300px;
+}

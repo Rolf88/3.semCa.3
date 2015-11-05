@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('myApp.security', [])
 .controller('AppLoginCtrl', function ($scope, $rootScope, $http, $window, $location) {
 
