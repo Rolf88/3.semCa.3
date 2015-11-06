@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>ALL USERS</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<h1>All Users</h1>
+
+<div ng-controller="allUsersCtrl as ctrl">
+    {{ctrl.test}}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="user in ctrl.users">
+            <td>{{user.userName}}</td>
+        </tr>
+    </table>
+</div>
