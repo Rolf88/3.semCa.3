@@ -1,5 +1,6 @@
 package facades;
 
+import deploy.DeploymentConfiguration;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -9,7 +10,7 @@ public class EntityFactory {
 
     public static EntityManagerFactory getInstance() {
         if (instance == null) {
-            instance = Persistence.createEntityManagerFactory("ca3.serverPU");
+            instance = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
         }
 
         return instance;
