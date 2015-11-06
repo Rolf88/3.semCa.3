@@ -7,10 +7,12 @@
         <thead>
             <tr>
                 <th>User</th>
+                <th></th>
             </tr>
         </thead>
         <tr ng-repeat="user in ctrl.users">
             <td>{{user.userName}}</td>
+            <td><button ng-click="ctrl.removeUser(user)" class="btn">Slet</button></td>
         </tr>
     </table>
 </div>
