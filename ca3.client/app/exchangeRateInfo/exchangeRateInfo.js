@@ -8,7 +8,7 @@ CurrencyModule.config(['$routeProvider', function ($routeProvider) {
         });
     }]);
 
-CurrencyModule.factory("CurrencyFactory", ["$http", function ($http) {
+CurrencyModule.factory("CurrencyFactory", ["$http", "$q", function ($http, $q) {
         var dailyrateCall = null;
 
         return {
@@ -30,8 +30,7 @@ CurrencyModule.factory("CurrencyFactory", ["$http", function ($http) {
 
 CurrencyModule.controller("DailyRatesController", ["CurrencyFactory", function (CurrencyFactory) {
         var self = this;
-        self.rate = [];
-
+       
         CurrencyFactory.getDailyRates().then(function (response) {
             self.rate = response.data;
         });

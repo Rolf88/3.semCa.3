@@ -60,7 +60,12 @@ public class CurrencyFetcher {
 
         private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        private final HashMap<String, Float> currencies = new HashMap<>();
+        private final HashMap<String, Float> currencies = new HashMap<String, Float>() {
+            {
+                put("DKK", Float.valueOf(100));
+            }
+        };
+
         private Date date;
 
         public HashMap<String, Float> getCurrencies() {
