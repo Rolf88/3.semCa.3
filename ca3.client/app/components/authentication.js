@@ -67,6 +67,7 @@ angular.module('myApp.security', [])
               $scope.isUser = false;
               $scope.username = "";
               $scope.error = data.error;
+              alert($scope.error.message);
               //$scope.logout();  //Clears an eventual error message from timeout on the inner view
             });
   };
