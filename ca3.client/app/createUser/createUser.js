@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.createUser', ['ngRoute', 'ui.bootstrap'])
+angular.module('myApp.createUser', ['ngRoute'])
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/createUser', {
                     templateUrl: 'createUser/createUserView.html',
