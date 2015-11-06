@@ -307,16 +307,16 @@ describe('myApp.exchangeRateInfo module', function () {
                 }
             ]
         };
-        var deferred;
+
         beforeEach(module('myApp.exchangeRateInfo'));
 
         beforeEach(inject(function (CurrencyFactory, $q) {
             CurrencyFactory.getDailyRates = function () {
-                deferred = $q.defer();
-
-                deferred.resolve(testResponse);
-
-                return deferred.promise;
+                return {
+                    then: function (func) {
+                        func({data: testResponse});
+                    }
+                };
             };
         }));
 
@@ -324,6 +324,12 @@ describe('myApp.exchangeRateInfo module', function () {
             var ctrl = $controller("DailyRatesController");
 
             expect(ctrl).toBeDefined();
+        }));
+
+        it('should be defined rate', inject(function ($controller) {
+            var ctrl = $controller("DailyRatesController");
+
+            expect(ctrl.rate).toBeDefined();
         }));
     });
 });
