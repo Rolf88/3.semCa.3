@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.allUsers', ['ngRoute'])
+var app = angular.module('myApp.allUsers', ['ngRoute'])
 
         .config(['$routeProvider', function ($routeProvider) {
                 $routeProvider.when('/allUsers', {
@@ -9,14 +9,26 @@ angular.module('myApp.allUsers', ['ngRoute'])
                 });
             }])
 
-        .controller('allUsersCtrl', function ($http, $scope) {
-            $http({
-                method: 'GET',
-                url: 'api/demouser'
-            }).then(function successCallback(res) {
-                $scope.data = res.data.message;
-            }, function errorCallback(res) {
-                $scope.error = res.status + ": " + res.data.statusText;
-            });
+        .controller('allUsersCtrl', function ($http, userFactory) {
+            var self = this;
+
+            userFactory.getAllUsers().then(function (response) {
+                self.users = response.data;
+            })
 
         });
+
+app.factory("userFactory", ["$http", function ($http) {
+        return{
+            getAllUsers: function () {
+                return $http.get("api/admin/users");
+            }
+        }
+    }]);
+
+
+
+
+
+
+            
