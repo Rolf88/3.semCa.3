@@ -4,10 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="a"/>
         <group>
-            <file>file:/Users/AlexanderSteen/Documents/Git/Skole/3.semCa.3/ca3.server/src/java/rest/CurrencyResource.java</file>
-            <file>file:/Users/AlexanderSteen/Documents/Git/Skole/3.semCa.3/ca3.server/src/java/entity/CurrencyRate.java</file>
-            <file>file:/Users/AlexanderSteen/Documents/Git/Skole/3.semCa.3/ca3.server/src/java/services/currency/CurrencyFetcher.java</file>
-            <file>file:/Users/AlexanderSteen/Documents/Git/Skole/3.semCa.3/ca3.server/src/java/services/currency/UpdateCurrencyJob.java</file>
+            <file>file:/C:/datamatiker/semester-2/ca-3/ca3.server/test/facades/UserFacadeTest.java</file>
         </group>
     </open-files>
 </project-private>

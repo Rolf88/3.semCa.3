@@ -10,7 +10,8 @@
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.password" value="test"/>
-            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>            
+            <property name="eclipselink.canonicalmodel.subpackage" value="development"/>
             <property name="javax.persistence.sql-load-script-source" value="script/FillInUsers.sql"/>
         </properties>
     </persistence-unit>    
@@ -26,18 +27,14 @@
             <property name="javax.persistence.jdbc.password" value="test"/>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="javax.persistence.sql-load-script-source" value="script/FillInUsers.sql"/>
+            <property name="eclipselink.canonicalmodel.subpackage" value="test"/>
         </properties>
     </persistence-unit>
     <persistence-unit name="pu_OPENSHIFT" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <non-jta-data-source>java:/comp/env/jdbc/MySQLDS</non-jta-data-source>
-        <class>entity.Person</class>
-        <class>entity.Address</class>
-        <class>entity.CityInfo</class>
-        <class>entity.Company</class>
-        <class>entity.Hobby</class>
-        <class>entity.InfoEntity</class>
-        <class>entity.Phone</class>
+        <class>entity.CurrencyRate</class>
+        <class>entity.User</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
